@@ -17,4 +17,23 @@ CHIP DMux4Way {
 
     PARTS:
     // Put your code here:
+	Not (in=sel[0], out=nsela);
+	
+	/** 1 **/
+	And (a=in, b=nsela, out=x);
+	Xor (a=sel[0], b=sel[1], out=y);
+	Not (in=y, out=z);
+	And (a=x, b=z, out=a);
+	
+	/** 2 **/
+	And (a=x, b=y, out=b);
+	
+	/** 3 **/
+	And (a=in, b=sel[0], out=g);
+	Xor (a=sel[0], b=sel[1], out=h);	
+	And (a=g, b=h, out=c);
+	
+	/** 4 **/
+	Not (in=h, out=k);
+	And (a=g, b=k, out=d);
 }
