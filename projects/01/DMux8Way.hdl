@@ -9,6 +9,15 @@
  *                            {0, in, 0, 0, 0, 0, 0, 0} if sel == 001
  *                            etc.
  *                            {0, 0, 0, 0, 0, 0, 0, in} if sel == 111
+ 
+ *a {a, b, c, d, e, f, g, h} = {in, 0, 0, 0, 0, 0, 0, 0} if sel == 000
+ *b                            {0, in, 0, 0, 0, 0, 0, 0} if sel == 001
+ *c                            {0, 0, in, 0, 0, 0, 0, 0} if sel == 010
+ *d                            {0, 0, 0, in, 0, 0, 0, 0} if sel == 011
+ *e                            {0, 0, 0, 0, in, 0, 0, 0} if sel == 100
+ *f                            {0, 0, 0, 0, 0, in, 0, 0} if sel == 101
+ *g                            {0, 0, 0, 0, 0, 0, in, 0} if sel == 110
+ *h                            {0, 0, 0, 0, 0, 0, 0, in} if sel == 111
  */
 
 CHIP DMux8Way {
@@ -17,4 +26,9 @@ CHIP DMux8Way {
 
     PARTS:
     // Put your code here:
+	DMux4Way (in=in, sel=sel[0..1], a=tmp1, b=tmp2, c=tmp3, d=tmp4);
+	DMux (in=tmp1, sel=sel[2], a=a, b=e);
+	DMux (in=tmp2, sel=sel[2], a=b, b=f);
+	DMux (in=tmp3, sel=sel[2], a=c, b=g);
+	DMux (in=tmp4, sel=sel[2], a=d, b=h);
 }
