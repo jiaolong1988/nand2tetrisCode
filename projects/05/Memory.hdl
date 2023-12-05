@@ -28,4 +28,7 @@ CHIP Memory {
 
     PARTS:
     // Put your code here:
+	DMux(in=load ,sel=address[14] ,a=load1 ,b=load2 );
+    DMux(in=load2,sel=address[13] ,a=load21,b=load22);
+    
 }
